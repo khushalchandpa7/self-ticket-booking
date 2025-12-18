@@ -1,7 +1,25 @@
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const Register = () => {
-    const navigate = useNavigate()
+export default function Register() {
+    const handleSubmit = () => {
+        console.log(formData);
+    }
+
+    const handleInputChange = (e) => {
+        setFormData({
+            ...formData, [e.target.name]: e.target.value
+        })
+    }
+
+    const navigate = useNavigate();
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        password: ""
+    });
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4 bg-white">
@@ -10,7 +28,7 @@ const Register = () => {
                 {/* Logo */}
                 <div className="flex justify-center mb-4">
                     <div className="bg-orange-500 p-3 rounded-xl text-white font-bold">
-                        <img src="../src/assets/khushal-dark-headshot-jpeg"></img>
+                        <img src="./assets/khushal-dark-headshot-jpeg" />
                     </div>
                 </div>
 
@@ -23,7 +41,7 @@ const Register = () => {
                 </p>
 
                 {/* Form */}
-                <form className="mt-6 space-y-4">
+                <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
 
                     {/* Full Name */}
                     <div>
@@ -33,6 +51,9 @@ const Register = () => {
                         <div className="relative mt-1">
                             <input
                                 type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleInputChange}
                                 placeholder="Khushal Chandpa"
                                 className="w-full pl-4 pr-4 py-3 bg-gray-100 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-400"
                             />
@@ -47,6 +68,9 @@ const Register = () => {
                         <div className="relative mt-1">
                             <input
                                 type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
                                 placeholder="you@example.com"
                                 className="w-full pl-4 pr-4 py-3 bg-gray-100 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-400"
                             />
@@ -61,6 +85,9 @@ const Register = () => {
                         <div className="relative mt-1">
                             <input
                                 type="tel"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleInputChange}
                                 placeholder="75******92"
                                 className="w-full pl-4 pr-4 py-3 bg-gray-100 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-400"
                             />
@@ -75,6 +102,9 @@ const Register = () => {
                         <div className="relative mt-1">
                             <input
                                 type="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleInputChange}
                                 placeholder="••••••••"
                                 className="w-full pl-4 pr-4 py-3 bg-gray-100 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-400"
                             />
@@ -84,6 +114,7 @@ const Register = () => {
                     {/* Button */}
                     <button
                         type="button"
+                        onClick={handleSubmit}
                         className="w-full py-3 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition"
                     >
                         Sign Up
@@ -101,4 +132,3 @@ const Register = () => {
         </div>
     )
 }
-export default Register

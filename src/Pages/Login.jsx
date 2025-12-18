@@ -2,7 +2,7 @@ import { useState } from "react";
 import { User, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+export default function Login() {
     const [activeTab, setActiveTab] = useState("user");
     const navigate = useNavigate()
 
@@ -83,4 +83,3 @@ const Login = () => {
         </div>
     );
 }
-export default Login
