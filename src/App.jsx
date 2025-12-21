@@ -1,6 +1,6 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 import "./App.css";
 
 export default function App() {
