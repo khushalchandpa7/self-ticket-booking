@@ -3,15 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { apiService } from "../Services/apiService.js";
 
 export default function Register() {
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const navigate = useNavigate();
-
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,49 +12,67 @@ export default function Register() {
     password: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+
+    setErrors({
+      ...errors,
+      [e.target.name]: "",
+    });
+  };
 
   const validate = () => {
     const newErrors = {};
+
     if (!formData.name.trim()) {
       newErrors.name = "Full name is required";
     } else if (formData.name.length <= 3) {
       newErrors.name = "Minimum 3 characters required";
     }
+
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Invalid email format";
     }
+
     if (!formData.phone.trim()) {
       newErrors.phone = "Mobile number is required";
     } else if (!/^[0-9]{10}$/.test(formData.phone)) {
       newErrors.phone = "Enter 10 digit number";
     }
+
     if (!formData.password.trim()) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
+    } else if (formData.password.length <= 6) {
       newErrors.password = "Minimum 6 characters required";
     }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async () => {
     if (!validate()) return;
-    const res = await apiService.post("user/add", {
-      ...formData,
-      role: "user",
-    });
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      password: "",
-    });
-    setErrors({});
-    navigate("/login");
-    setFormData({});
+    try {
+      const res = await apiService.post("user/add", {
+        ...formData,
+        role: "user",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+      });
+      setErrors({});
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
