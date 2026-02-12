@@ -48,7 +48,6 @@ function App() {
       ],
     },
 
-    // Admin routes
     {
       path: "admin",
       element: <AdminLayout />,
