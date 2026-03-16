@@ -78,14 +78,12 @@ export default function Register() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-white">
       <div className="w-full max-w-md rounded-2xl p-6 sm:p-7 sm:m-7 bg-green-100 shadow-md">
-        {/* Logo */}
         <div className="flex justify-center mb-4">
           <div className="bg-green-500 p-3 rounded-xl text-white font-bold">
             LOGO
           </div>
         </div>
 
-        {/* Heading */}
         <h1 className="text-3xl font-bold text-center text-gray-800">
           Register
         </h1>
@@ -93,9 +91,7 @@ export default function Register() {
           Create an account to continue
         </p>
 
-        {/* Form */}
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
-          {/* Full Name */}
           <div>
             <label htmlFor="name" className="text-sm font-medium text-gray-600">
               Full Name
@@ -116,7 +112,6 @@ export default function Register() {
             )}
           </div>
 
-          {/* Email */}
           <div>
             <label
               htmlFor="email"
@@ -140,7 +135,6 @@ export default function Register() {
             )}
           </div>
 
-          {/* Mobile */}
           <div>
             <label
               htmlFor="phone"
@@ -164,7 +158,6 @@ export default function Register() {
             )}
           </div>
 
-          {/* Password */}
           <div>
             <label htmlFor="pass" className="text-sm font-medium text-gray-600">
               Password
@@ -185,7 +178,6 @@ export default function Register() {
             )}
           </div>
 
-          {/* Button */}
           <button
             type="button"
             onClick={handleSubmit}
@@ -195,7 +187,6 @@ export default function Register() {
           </button>
         </form>
 
-        {/* Footer */}
         <p className="text-center text-gray-500 mt-6 text-sm">
           You already have an account?{" "}
           <button
