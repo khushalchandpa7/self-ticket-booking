@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { User, Mail, Phone, Calendar, Save, Edit } from "lucide-react";
+import { User, Mail, Phone, Calendar, Save, Edit2 } from "lucide-react";
 import { apiService } from "../../Services/apiService";
 
-export default function Profile() {
+const Profile = () => {
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
 
   const id = JSON.parse(localStorage.getItem("authData")).id;
-
   const getUserProfile = async () => {
     try {
       setLoading(true);
@@ -18,7 +17,6 @@ export default function Profile() {
       setFormData({
         name: response.data.name,
         email: response.data.email,
-        memberSince: response.data.createdAt.split("T")[0],
         phone: response.data.phone,
       });
     } catch (error) {
@@ -38,7 +36,7 @@ export default function Profile() {
   };
 
   const handleSave = async () => {
-    await apiService.put(`/user/update/${id}`, formData);
+    await apiService.put(`/user/${id}`, formData);
     setIsEditing(false);
   };
 
@@ -66,16 +64,16 @@ export default function Profile() {
           {isEditing ? (
             <button
               onClick={handleSave}
-              className="flex items-center gap-2 bg-green-500 text-white px-5 py-2 rounded-full hover:bg-green-600 transition"
+              className="flex items-center cursor-pointer gap-2 bg-green-500 text-white px-5 py-2 rounded-full hover:bg-green-600 transition"
             >
               <Save size={16} /> Save
             </button>
           ) : (
             <button
               onClick={() => setIsEditing(true)}
-              className="text-sm flex items-center gap-2 border border-green-500 text-green-500 px-4 py-2 rounded-full hover:bg-green-50 transition"
+              className="text-sm flex items-center cursor-pointer gap-2 border border-green-500 text-green-500 px-4 py-2 rounded-full hover:bg-green-50 transition"
             >
-              <Edit size={16} /> Edit Profile
+              <Edit2 size={16} /> Edit Profile
             </button>
           )}
         </div>
@@ -141,20 +139,6 @@ export default function Profile() {
 
           <div>
             <label className="flex items-center gap-2 text-gray-600 font-medium mb-1">
-              <Calendar size={16} className="text-green-500" /> Member Since
-            </label>
-            <input
-              type="date"
-              value={formData?.memberSince}
-              disabled={!isEditing}
-              name="memberSince"
-              onChange={handleChange}
-              className="w-full px-3 py-2 rounded-xl border-gray-300 border text-sm bg-gray-50 disabled:opacity-70"
-            />
-          </div>
-
-          <div>
-            <label className="flex items-center gap-2 text-gray-600 font-medium mb-1">
               <Phone size={16} className="text-green-500" /> Mobile Number
             </label>
             <input
@@ -170,4 +154,6 @@ export default function Profile() {
       </div>
     </div>
   );
-}
+};
+
+export default Profile;
