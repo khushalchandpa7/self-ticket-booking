@@ -7,7 +7,7 @@ const stats = [
   {
     id: 1,
     title: "Total Bookings (24 hours)",
-    value: 120, // Static initial value
+    value: 120,
     bg: "bg-orange-50",
     iconBg: "bg-orange-500",
     icon: CalendarCheck,
@@ -15,7 +15,7 @@ const stats = [
   {
     id: 2,
     title: "Total Revenue (24 hours)",
-    value: "$12,400", // Static initial value
+    value: "$12,400",
     bg: "bg-green-50",
     iconBg: "bg-green-500",
     icon: DollarSign,
@@ -23,10 +23,8 @@ const stats = [
 ];
 
 const AdminDashboard = () => {
-  // UI state
   const [dashBoardStatasctics, setDashBoardStatistics] = useState(stats);
 
-  // Data states (initialized with mock data for display)
   const [bookingCount, setBookingCount] = useState([
     { name: "Summer Fest", y: 45 },
     { name: "Tech Talk", y: 20 },
@@ -54,7 +52,6 @@ const AdminDashboard = () => {
     { name: "COMPLETED", y: 8 },
   ]);
 
-  // Chart Options
   const barChartOptions = {
     chart: { type: "column" },
     title: { text: null },
@@ -87,7 +84,6 @@ const AdminDashboard = () => {
     series: [{ name: "Events", data: eventStatus }],
   };
 
-  // Methods for manual API integration later
   const loadEvents = async () => {
     try {
       const res = await apiService.get("/event/dashboard");
@@ -96,7 +92,6 @@ const AdminDashboard = () => {
       if (res && res.data) {
         const { totalTicketsSold, totalRevenue, events } = res.data;
 
-        // Update stats
         setDashBoardStatistics([
           {
             ...stats[0],
@@ -108,7 +103,6 @@ const AdminDashboard = () => {
           },
         ]);
 
-        // Update charts
         const bCount = (events || []).map((e) => ({
           name: e.title,
           y: e.bookingCount || 0,
@@ -131,7 +125,6 @@ const AdminDashboard = () => {
         setCancelledCount(cCount);
         setBookingRevenue(bRev);
 
-        // Update status pie
         const statusMap = (events || []).reduce((acc, e) => {
           const status = e.status || "UPCOMING";
           acc[status] = (acc[status] || 0) + 1;
@@ -156,7 +149,6 @@ const AdminDashboard = () => {
 
   return (
     <div className="w-full p-6 space-y-6 bg-gray-50 min-h-screen">
-      {/* HEADER */}
       <div>
         <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
         <p className="text-sm text-gray-500">
@@ -164,7 +156,6 @@ const AdminDashboard = () => {
         </p>
       </div>
 
-      {/* STATS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {dashBoardStatasctics.map((item, index) => {
           const Icon = item.icon;
@@ -191,7 +182,6 @@ const AdminDashboard = () => {
         })}
       </div>
 
-      {/* CHARTS */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-2xl shadow-sm p-5 border border-gray-100">
           <h3 className="font-semibold mb-1 text-gray-800">Event Bookings</h3>
