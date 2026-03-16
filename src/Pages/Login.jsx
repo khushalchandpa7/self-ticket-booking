@@ -5,7 +5,6 @@ import { apiService } from "../Services/apiService";
 
 export default function Login() {
   const [activeTab, setActiveTab] = useState("user");
-  // const [role, setRole] = useState("user");
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
