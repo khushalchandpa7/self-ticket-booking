@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Pencil, XCircle, Download, ChevronDown, Search } from "lucide-react";
 import { apiService } from "../../Services/apiService";
 
-// Mock EditBookingModal Component
 const EditBookingModal = ({
   isEditOpen,
   selectedBooking,
