@@ -4,7 +4,6 @@ import BookingModal from "../../Components/BookingModal.jsx";
 import { apiService } from "../../Services/apiService.js";
 
 const Events = () => {
-  // Mocking user for static version if needed, or safer access
   const getUserId = () => {
     try {
       const user = JSON.parse(localStorage.getItem("authData"));
@@ -48,7 +47,7 @@ const Events = () => {
       console.log("Booking Success:", response);
       alert(response?.status?.description || "Ticket booked successfully!");
       setOpen(false);
-      loadEvents(); // Refresh to update booking counts
+      loadEvents();
     } catch (error) {
       console.error("Booking failed:", error);
       const errorMsg =
@@ -90,7 +89,6 @@ const Events = () => {
                   </div>
 
                   <div className="mt-6">
-                    {/* Availability Bar */}
                     <div className="flex justify-between text-xs text-gray-500 mb-1">
                       <span>Availability</span>
                       <span>
