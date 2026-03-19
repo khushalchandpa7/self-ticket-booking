@@ -20,7 +20,6 @@ export default function Header() {
     <>
       <header className="w-full bg-white shadow-sm px-6 pt-4 border-b border-b-gray-200">
         <div className="flex items-center justify-between">
-          {/* Left Section */}
           <div className="flex items-center gap-4">
             <div className="bg-green-500 w-12 h-12 rounded-2xl flex items-center justify-center">
               <span className="text-white font-bold text-xl">
@@ -35,7 +34,6 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Right Section */}
           <div className="flex items-center gap-4">
             <button className="p-2 rounded-full hover:bg-gray-100 transition">
               <BellIcon className="w-5 h-5 text-gray-600" />
@@ -51,7 +49,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Navigation */}
         <nav className="w-full mt-4">
           <ul className="flex items-center gap-6 text-sm font-medium">
             <NavLink to="/user/dashboard" className={navClass}>

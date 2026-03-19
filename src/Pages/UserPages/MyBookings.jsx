@@ -21,7 +21,6 @@ const MyBookings = () => {
     if (!userId) return;
     try {
       setLoading(true);
-      // Using filter endpoint to get tickets for this user
       const response = await apiService.post("/ticket/filter", {
         filter: { userId: userId, softDelete: false },
       });

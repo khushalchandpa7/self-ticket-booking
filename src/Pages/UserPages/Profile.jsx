@@ -49,7 +49,6 @@ const Profile = () => {
   return (
     <div className="w-full flex my-20 justify-center items-center ">
       <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-sm p-5 border border-gray-200">
-        {/* Header */}
         <div className="flex justify-between items-start">
           <div>
             <h2 className="text-lg font-semibold flex items-center gap-2">
@@ -78,7 +77,6 @@ const Profile = () => {
           )}
         </div>
 
-        {/* Profile Center */}
         <div className="flex flex-col items-center text-center mt-5">
           <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white text-xl font-semibold">
             {user?.initials}
@@ -91,11 +89,9 @@ const Profile = () => {
             <span className="px-3 py-1 rounded-full text-sm bg-green-100 text-green-600">
               {user.role}
             </span>
-            {/* <span className="px-3 py-1 rounded-full text-sm bg-green-100 text-green-600">{user.isActive ? "Active": "InActive"}</span> */}
           </div>
         </div>
 
-        {/* Stats */}
         <div className="flex justify-center gap-10 mt-5">
           <div className="text-center">
             <p className="text-xl font-semibold">{user.totalBookings}</p>
@@ -107,7 +103,6 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Editable Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
           <div>
             <label className="flex items-center gap-2 text-gray-600 font-medium mb-1">
