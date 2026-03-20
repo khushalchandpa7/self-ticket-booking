@@ -31,7 +31,7 @@ const generateSeats = (capacity) => {
     for (let i = 1; i <= colCount; i++) {
       seats.push({
         number: `${rowLabel}${i}`,
-        isBooked: false, // default
+        isBooked: false,
       });
       seatsCreated++;
     }

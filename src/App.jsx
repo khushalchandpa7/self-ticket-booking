@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import DefaultRoute from "./Guards/DefaultRoute";
@@ -14,52 +14,43 @@ import Booking from "./Pages/AdminPages/Booking";
 import AuthGuard from "./Guards/AuthGuard";
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/login",
-      element: (
-        <AuthGuard requiredAuth={false}>
-          <Login />
-        </AuthGuard>
-      ),
-    },
-    {
-      path: "/register",
-      element: (
-        <AuthGuard requiredAuth={false}>
-          <Register />
-        </AuthGuard>
-      ),
-    },
-    {
-      path: "/",
-      element: <DefaultRoute />,
-    },
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            <AuthGuard requiredAuth={false}>
+              <Login />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <AuthGuard requiredAuth={false}>
+              <Register />
+            </AuthGuard>
+          }
+        />
 
-    // User Routes
-    {
-      path: "user",
-      element: <UserLayout />,
-      children: [
-        { path: "dashboard", element: <UserDashboard /> },
-        { path: "my-bookings", element: <MyBookings /> },
-        { path: "event", element: <UserEvent /> },
-        { path: "profile", element: <Profile /> },
-      ],
-    },
+        <Route path="/" element={<DefaultRoute />} />
 
-    {
-      path: "admin",
-      element: <AdminLayout />,
-      children: [
-        { path: "dashboard", element: <AdminDashboard /> },
-        { path: "bookings", element: <Booking /> },
-        { path: "event", element: <AdminEvent /> },
-      ],
-    },
-  ]);
+        <Route path="user" element={<UserLayout />}>
+          <Route path="dashboard" element={<UserDashboard />} />
+          <Route path="my-bookings" element={<MyBookings />} />
+          <Route path="event" element={<UserEvent />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
 
-  return <RouterProvider router={router} />;
+        <Route path="admin" element={<AdminLayout />}>
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="bookings" element={<Booking />} />
+          <Route path="event" element={<AdminEvent />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
