@@ -9,7 +9,7 @@ const DefaultRoute = () => {
   if (role === "admin" || role === "ADMIN") {
     return <Navigate to="admin/dashboard" replace />;
   }
-  if (role === "USER" || role === "user") {
+  if (role === "user" || role === "USER") {
     return <Navigate to="user/dashboard" replace />;
   }
 };
