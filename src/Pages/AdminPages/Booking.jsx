@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Pencil, XCircle, Download, ChevronDown, Search } from "lucide-react";
+import { Pencil, XCircle, Search } from "lucide-react";
 import { apiService } from "../../Services/apiService";
 
-// Mock EditBookingModal Component
 const EditBookingModal = ({
   isEditOpen,
   selectedBooking,
@@ -54,7 +53,6 @@ export default function ManageBookings() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // UI Logic States
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -63,7 +61,6 @@ export default function ManageBookings() {
     try {
       const res = await apiService.get("/ticket/list");
       console.log("Fetched Bookings:", res);
-      // Backend format is { data: [...], status: {...} }
       setBookings(res.data || []);
     } catch (error) {
       console.error("Failed to load bookings", error);
@@ -93,7 +90,6 @@ export default function ManageBookings() {
 
   const handleSave = (data) => {
     console.log("Saving booking data:", data);
-    // Modal is currently read-only for user name, so no save logic needed yet
     closeModal();
   };
 
@@ -122,7 +118,6 @@ export default function ManageBookings() {
 
   return (
     <div className="w-full p-6 bg-gray-50 min-h-screen">
-      {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-800">Manage Bookings</h1>
         <p className="text-gray-500 mt-1">
@@ -130,7 +125,6 @@ export default function ManageBookings() {
         </p>
       </div>
 
-      {/* Filters */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3 w-full">
           <div className="relative flex items-center">
@@ -146,7 +140,6 @@ export default function ManageBookings() {
         </div>
       </div>
 
-      {/* Table */}
       <div className="bg-white rounded-t-xl overflow-hidden shadow-sm">
         {loading ? (
           <div className="p-10 text-center text-gray-500">
